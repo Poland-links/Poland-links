@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!COLOR!</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+         /* 設定網頁文字不可選取 */
+         body{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            padding-top: 50px;
+            position: relative;
+        }
+
+        .start{
+            width: 500px;
+            height: 200px;
+            background-color: #e2e2e2;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .start-btn{
+            width: 40%;
+            height: 80%;
+            background-color: rgb(53, 76, 141);
+            font-size: 40px;
+            font-weight: 800;
+            color: aquamarine;
+            border-radius: 15px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .manual{
+            width: 500px;
+            height: 500px;
+            background-color: #9b884a;
+            font-size: 25px;
+            font-weight: 600;
+            color: rgb(82, 35, 53);
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,-200%);   
+            transition: all 2s;
+        }
+        .manual-down{
+            transform: translate(-50%,0);   
+        }
+        .advert{
+            width: 500px;
+            height: 500px;
+            background-color: #6f8ac4;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,-200%);   
+            transition: all 1s;
+        }
+        .advert img{
+            width: 100%;
+        }
+        .advert-down{
+            transform: translate(-50%,0);   
+        }
+        .board{
+            width: 500px;
+            height: 500px;
+            background-color: #e2e2e2;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .cube{
+            width: 45%;
+            height: 45%;
+            border-radius: 15px;
+            margin: 5px;
+        }
+        .cube-lv2{
+            width: 30%;
+            height: 30%;
+        }
+        .cube-lv3{
+            width: 23%;
+            height: 23%;
+        }
+        .cube-lv4{
+            width: 18%;
+            height: 18%;
+        }
+        .cube-lv5{
+            width: 14%;
+            height: 14%;
+        }
+        .cube-lv6{
+            width: 12%;
+            height: 12%;
+        }
+        .cube-lv7{
+            width: 10%;
+            height: 10%;
+        }
+
+        .score{
+            width: 500px;
+            height: 200px;
+            background-color: #e2e2e2;
+            font-size: 20px;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .pause{
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;    
+            font-size: 30px; 
+            font-weight: 800;
+            border-radius: 50%;       
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .proceed{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(30, 130, 170);    
+            font-size: 30px; 
+            font-weight: 800;
+            border-radius: 50%;       
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .restart{
+            width: 500px;
+            height: 200px;
+            background-color: #e2e2e2;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .restart-btn{
+            width: 40%;
+            height: 80%;
+            background-color: rgb(53, 76, 141);
+            font-size: 40px;
+            font-weight: 800;
+            color: aquamarine;
+            border-radius: 15px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .leave{
+            width: 500px;
+            height: 800px;
+            background-color: #050303;
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,0%);   
+            transition: all 10s;
+            opacity: 0;
+        }
+        .leave span{
+            font-size: 50px;
+            font-family: DFKai-sb;
+            color: #f81c1c;
+            -webkit-writing-mode: vertical-rl;
+            writing-mode: vertical-rl
+        }
+        .leave-opacity{
+            opacity: 1;
+        }
+        .board-dis{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="start">
+            <div class="start-btn start-btn">開始遊戲!</div>
+            <div class="start-btn manual-btn">觀看說明!</div>
+        </div>
+        <div class="manual"><span>點選開始遊戲開始遊戲<br>初始點數2000過關加分點錯扣分<br>得分隨等級提升增加<br>連續點錯扣分翻倍，直到過關重置<br>限時60秒鐘<br></span></div>
+        <div class="advert"> <img src="https://www.mcdelivery.com.tw/tw//static/1668570514473/assets/886/products/66992.png?" alt=""> </div>
+        <div class="board"></div>
+        <div class="restart">
+            <div class="restart-btn re">再來一次!</div>
+            <div class="restart-btn cancel">忍痛放棄!</div>
+        </div>
+        <div class="score">
+            <div class="game-info">
+                <div class="ans">ANSER: <span></span> </div>
+                <div class="point">LIFE POINT: <span></span> </div>
+                <div class="step">已通關數: <span></span></div>
+                <div class="hard">目前難度: <span></span></div>
+                <div class="time60">倒數計時: <span></span></div>
+            </div>
+            <div class="pause">暫停</div>
+            <div class="proceed">繼續</div>
+        </div>
+        <div class="leave"> 
+            <span>滾滾長江東逝水，浪花淘盡英雄。<br>
+                是非成敗轉頭空。<br>
+                青山依舊在，幾度夕陽紅。<br>
+                白髮漁樵江渚上，慣看秋月春風。<br>
+                一壺濁酒喜相逢。<br>
+                古今多少事，都付笑談中。</span>
+            <span></span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        
+        const start = document.querySelector('.start');
+        const advert = document.querySelector('.advert');
+        const manual = document.querySelector('.manual');
+        const board = document.querySelector('.board');
+        const restart = document.querySelector('.restart');
+        const score = document.querySelector('.score');
+        const leave = document.querySelector('.leave');
+        const longWater = document.querySelector('.leave span');
+
+        const ansShow = document.querySelector('.ans');
+        const pointShow = document.querySelector('.point');
+        const stepShow = document.querySelector('.step');
+        const hardShow = document.querySelector('.hard');
+        const timerShow = document.querySelector('.time60');
+
+        const ans = document.querySelector('.ans span');
+        const point = document.querySelector('.point span');
+        const stepp = document.querySelector('.step span');
+        const hardd = document.querySelector('.hard span');
+        const timer = document.querySelector('.time60 span');
+
+        var cubes = document.querySelectorAll('.cube');
+
+        const startBtn = document.querySelector('.start-btn');
+        const manualBtn = document.querySelector('.manual-btn');
+
+        const reBtn = document.querySelector('.re');
+        const cancelBtn = document.querySelector('.cancel');
+
+        const pauseBtn = document.querySelector('.pause');
+        const proceedBtn = document.querySelector('.proceed');
+
+        let longwater = ['滾','滾','長','江','東','逝','水','，','浪','花','淘','盡','英','雄','。','<br>','是','非','成','敗','轉','頭','空','。','<br>','青','山','依','舊','在','，','幾','度','夕','陽','紅','。','<br>','白','髮','漁','樵','江','渚','上','，','慣','看','秋','月','春','風','。','<br>','一','壺','濁','酒','喜','相','逢','。','<br>','古','今','多','少','事','，','都','付','笑','談','中','。'];
+
+        let pointCount = 2000;
+        let deduct = 500;
+        let step = 0;
+        let hard = 1;
+
+        let second60 = 60;
+        let pauseTime = 0;
+
+        var randomCunt = 2;
+        var random = getRandomInt(randomCunt**2);
+
+        var randomR = getRandomInt(100);
+        var randomG = getRandomInt(100);
+        var randomB = getRandomInt(100);
+
+        point.textContent = pointCount;
+
+        board.classList.add('board-dis');
+        score.classList.add('board-dis');
+        proceedBtn.classList.add('board-dis');
+        restart.classList.add('board-dis');
+        leave.classList.add('board-dis');
+
+        function timer60() {
+            var intervalID = setInterval(function() {
+
+                if(second60<=60){
+                    timer.textContent = (second60-=1);
+                }
+                if(second60<0){
+                    ansShow.classList.add('board-dis');
+                    pointShow.classList.add('board-dis');
+                    board.classList.add('board-dis');
+                    restart.classList.remove('board-dis');
+                    timerShow.classList.add('board-dis');
+                    score.classList.add('board-dis');
+                    second60 = 999999;
+                    //避免alert搶先執行
+                    //延遲時間
+                    setTimeout(()=>{
+                        swal("時間到 遊戲結束!", `恭喜推進${step}關達到等級${hard}`, "warning",{dangerMode: true});
+                    },10);
+                }
+            }, 1000);
+        }
+
+        function gameStart(){
+
+            second60 = 60;
+            timer.textContent = second60;
+            ansShow.classList.remove('board-dis');
+            pointShow.classList.remove('board-dis');
+            stepShow.classList.remove('board-dis');
+            hardShow.classList.remove('board-dis');
+            timerShow.classList.remove('board-dis');
+            restart.classList.add('board-dis');
+
+            ans.textContent = '';
+            pointCount = 2000;
+            point.textContent = pointCount;
+            deduct = 500;
+            randomCunt = 2;
+            step = 0;
+            stepp.textContent = step;
+            hard = 1;
+            hardd.textContent = hard;
+            random = getRandomInt(randomCunt**2);
+            board.innerHTML='';
+
+            for(let i=0;i<(randomCunt**2);i++){
+                board.innerHTML +='<div class="cube"></div>';
+            }
+            cubes = document.querySelectorAll('.cube');
+            cubes.forEach(function(cube,index){
+                if(index == random){
+                        cube.style.backgroundColor =`rgb(${parseInt(randomR+(100/hard))}, ${parseInt(randomG+(100/hard))}, ${parseInt(randomB+(100/hard))})`;
+                    }else if(index != random){
+                        cube.style.backgroundColor =`rgb(${parseInt(randomR)}, ${parseInt(randomG)}, ${parseInt(randomB)})`;
+                    }
+            });
+
+        }
+
+        function gameLoop(){
+
+            point.textContent = pointCount;
+            cubes.forEach(function(cube,index){
+                //按下方塊事件
+                cube.addEventListener('click',function(){
+                    //如果選中正確答案  方塊重新洗牌
+                    if(index == random){
+                        deduct = 500;
+                        step +=1;
+                        stepp.textContent = step;
+                        if((step%3 ==0) && hard<7){
+                            hard +=1;
+                        }
+                        hardd.textContent = hard;
+                        // console.log(hard);
+                        pointCount+=(hard*1000);
+                        ans.textContent = '正確!';
+                        point.textContent = pointCount;
+                        randomCunt = hard+1;
+                        random = getRandomInt((randomCunt**2));
+                        // console.log(randomCunt);
+                        // console.log(random);
+                        board.innerHTML='';
+                        for(let i=0;i<(randomCunt**2);i++){
+                            board.innerHTML +=`<div class="cube cube-lv${hard}"></div>`;
+                        }
+        
+                        cubes = document.querySelectorAll('.cube');
+                        randomR = getRandomInt(100);
+                        randomG = getRandomInt(100);
+                        randomB = getRandomInt(100);
+                        //重置方塊 答案目標給予不同色差
+                        //依難度調整色差程度
+                        cubes.forEach(function(cube,index){
+                            if(index == random){
+                                cube.style.backgroundColor = cube.style.backgroundColor =`rgb(${parseInt(randomR+(100/hard))}, ${parseInt(randomG+(100/hard))}, ${parseInt(randomB+(100/hard))})`;
+                            }else if(index != random){
+                                cube.style.backgroundColor =`rgb(${parseInt(randomR)}, ${parseInt(randomG)}, ${parseInt(randomB)})`;
+                            }
+                        });
+                        gameLoop();
+
+                    }else if(index != random){
+                        pointCount-=deduct;
+                        deduct *=2;
+                        ans.textContent = '錯誤!';
+                        point.textContent = pointCount;
+                        if(pointCount<=0){
+                            ansShow.classList.add('board-dis');
+                            pointShow.classList.add('board-dis');
+                            board.classList.add('board-dis');
+                            restart.classList.remove('board-dis');
+                            timerShow.classList.add('board-dis');
+                            score.classList.add('board-dis');
+                            second60 = 999999;
+                            //避免alert搶先執行
+                            //延遲時間
+                            setTimeout(()=>{
+                                swal("分數歸零 遊戲結束!", `恭喜推進${step}關達到等級${hard}`, "warning",{dangerMode: true});
+                            },10);
+                        }
+                    }
+                });
+            });
+        }
+
+        startBtn.addEventListener('click',function(){
+            start.classList.add('board-dis');
+            manual.classList.remove('manual-down');
+            board.classList.remove('board-dis');
+            score.classList.remove('board-dis');
+            restart.classList.add('board-dis');
+            timer60();
+            gameStart();
+            gameLoop();
+        });
+        manualBtn.addEventListener('click',function(){
+            manual.classList.toggle('manual-down');
+        });
+        pauseBtn.addEventListener('click',function(){
+            pauseTime = second60;
+            second60 = 999999;
+            pauseBtn.classList.add('board-dis');
+            proceedBtn.classList.remove('board-dis');
+            advert.classList.add('advert-down');
+        });
+        proceedBtn.addEventListener('click',function(){
+            second60 = pauseTime;
+            pauseBtn.classList.remove('board-dis');
+            proceedBtn.classList.add('board-dis');
+            advert.classList.remove('advert-down');
+        });
+        reBtn.addEventListener('click',function(){
+            restart.classList.add('board-dis');
+            board.classList.remove('board-dis');
+            score.classList.remove('board-dis');
+            gameStart();
+            gameLoop();
+        });
+        cancelBtn.addEventListener('click',function(){
+            restart.classList.add('board-dis');
+            board.classList.add('board-dis');
+            score.classList.add('board-dis');
+            leave.classList.remove('board-dis');
+            setTimeout(()=>{
+                leave.classList.add('leave-opacity');
+            },1000);
+            // longWater.textContent = '';
+            // for(let i = 0; i < 75; i++) {
+            //     setTimeout(()=>{
+            //         longWater.innerHTML+=longwater[i];
+            //     },i*300)}
+        });
+
+        //隨機數函式
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+    </script>
+</body>
+</html>
